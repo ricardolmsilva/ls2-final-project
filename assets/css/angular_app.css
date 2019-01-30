@@ -1,0 +1,8 @@
+/* Styles to support angular bootstrap loading indicator */
+.splash {
+    display: none;
+}
+
+[ng-cloak].splash {
+    display: block !important;
+}

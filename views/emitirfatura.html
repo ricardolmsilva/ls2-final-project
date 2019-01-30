@@ -1,0 +1,274 @@
+<div class="code-fixed-header" os-form="$ctrl.formStatus" os-form-validation="" os-form-focus="">
+
+  <div class="fixed-header-wrap" style="height: 110px;">
+    <div class="fixed-header affix-top" style="width: 805px;">
+      <div class="vcenter">
+        <div class="col-xs-7">
+          <h1>Emitir Faturas</h1>
+        </div>
+        <div class="col-xs-4"></div>
+        <div class="col-xs-5 text-right btn-group-inline"> <a href="/" class="btn btn-default btn-sm dropdown-toggle">Cancelar</a> <button type="button" class="btn btn-primary btn-sm" ng-click="">Emitir</button>
+        </div>
+        <div class="text-right btn-group-responsive">
+          <div class="btn-group">
+            <button type="button" class="btn btn-default-hover-primary btn-sm" ng-click="$ctrl.onPressEmitirValidationCallback()">Emitir</button>
+            <button type="button" class="btn btn-default btn-sm dropdown-toggle" data-toggle="dropdown" aria="" expanded="false">
+              <span class="caret"></span>
+              <span class="sr-only">Toggle Dropdown</span>
+            </button>
+            <ul class="dropdown-menu" role="menu">
+              <a href="/#!/portal/" class="btn btn-default btn-sm dropdown-toggle">Cancelar</a>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xs-12">
+          <legend><small>Emita aqui uma Fatura ou Fatura-Recibo</small></legend>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row margin-top-lg">
+    <div class="col-md-12 margin-top-sm">
+
+      <!--  Emissão   -->
+      <div>
+        <div class="panel panel-primary-alt">
+          <div class="panel-heading">
+            <div class="panel-title ng-binding">Emissão</div>
+          </div>
+          <div class="panel-footer font-size-sm color-at-gray-dark" style="border-bottom:1px solid #ddd">
+            <p>Se não tiver atividade aberta na data de prestação de serviço especificada, a Fatura ou Fatura-Recibo a emitir será do tipo Ato Isolado.</p>
+          </div>
+          <div class="panel-body">
+            <div class="alert alert-warning" role="alert" ng-show="!$ctrl.commonStateService.init">Se alterar a Data de prestação ou o Tipo, irá perder a informação inserida do formulário.
+              <button type="button" class="close" data-dismiss="alert" data-toggle="tooltip" title="" data-original-title="Fechar Alerta">
+                <span aria-hidden="true">×</span>
+              </button> </div>
+            <div class="row">
+              <div class="col-md-4 col-xs-12">
+
+                <div class="form-group form-group-sm">
+
+                  <label for="datepicker" class="ng-binding">Data de prestação de serviço</label>
+                  <div class="input-group input-group-sm date">
+                    <input class="form-control date-input text-right" type="text" name="dataPrestacao" id="datepicker">
+                    <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                  </div>
+
+
+                </div>
+
+              </div>
+              <div class="col-md-4 col-xs-12">
+                <div class="form-group form-group-sm">
+
+                  <label title=""> Tipo</label>
+                  <select name="tipoRecibo" class="form-control">
+                    <option label="Fatura-Recibo" value="string:R">Fatura-Recibo</option>
+                    <option label="Fatura" value="string:FTR">Fatura</option>
+                  </select>
+
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+      <!--  Transmitente de Bens ou do Prestador de Serviços  -->
+      <div class="panel panel-primary-alt" os-form="$ctrl.commonStateService.formStatus" os-form-validation="" os-form-focus="">
+        <div class="panel-heading">
+          <div class="panel-title">Transmitente de Bens ou do Prestador de Serviços</div>
+        </div>
+        <div class="panel-body">
+          <div class="row">
+
+            <div class="col-sm-4 form-group form-group-sm">
+              <label class="ontrol-label">NIF</label>
+              <p class="form-control-static ng-binding">224221159</p>
+            </div>
+
+            <div class="col-sm-8">
+              <label class="ontrol-label">Nome</label>
+              <p class="form-control-static ng-binding">RICARDO LUIS MELO DA SILVA</p>
+            </div>
+
+          </div>
+          <div class="row">
+            <div class="col-md-12">
+              <label class="ontrol-label">Domicílio fiscal/Estabelecimento estável</label>
+              <p class="form-control-static">R DA ESCOLA 56 3800-718 EIXO</p>
+            </div>
+            <div class="col-md-12">
+
+
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-12 col-xs-12" ng-show="!$ctrl.isAtividadeBloqueada()">
+
+              <div class="form-group form-group-sm">
+
+                <label> Atividade exercida</label>
+                <select name="atividadePrestador" class="form-control">
+                  <option label="OUTROS PRESTADORES DE SERVICOS" value="string:1519" selected="selected">OUTROS PRESTADORES DE SERVICOS</option>
+                </select>
+
+              </div>
+
+            </div>
+
+
+          </div>
+        </div>
+      </div>
+
+
+
+
+      <!--  Adquirente de Bens ou de Serviços  -->
+      <div class="panel panel-primary-alt" os-form="$ctrl.commonStateService.formStatus" os-form-validation="" os-form-focus="" pfview-init="">
+        <div class="panel-heading">
+          <div class="panel-title">Adquirente de Bens ou de Serviços</div>
+        </div>
+        <div class="panel-body">
+          <div class="row">
+            <div class="col-md-3 col-xs-12">
+              <lf-dropdown name="pais" lf-label="País" lf-model="$ctrl.formParameters.pais" lf-options="$ctrl.paises" lf-change="$ctrl.pfChangePais(model)" lf-empty-option="true" class="ng-isolate-scope">
+                <div class="form-group form-group-sm">
+                  <label title="" class="ng-binding"> País
+                  </label>
+                  <select name="pais" class="form-control">
+                    <option label="PORTUGAL  " value="string:620" selected="selected">PORTUGAL </option>
+                  </select>
+                  <div class="opcional-label ng-binding"></div> <span class="help-block"></span>
+                </div>
+              </lf-dropdown>
+            </div>
+
+            <div ng-show="!$ctrl.isEstrangeiro()" class="col-md-4 col-xs-12">
+
+              <div class="form-group form-group-sm">
+                <label> NIF</label>
+                <input name="nifAdquirente" type="text" class="form-control">
+              </div>
+
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-12 col-xs-12">
+
+              <div class="form-group form-group-sm">
+                <label>Nome</label>
+                <input name="nomeAdquirente" type="text" class="form-control" maxlength="160">
+              </div>
+
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-12 col-xs-12">
+              <div class="ng-isolate-scope">
+                <div class="form-group form-group-sm">
+                  <label> Morada</label>
+                  <input name="moradaAdquirente" type="text" class="form-control" maxlength="100">
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+
+
+
+
+      <!--  Transmissão de Bens ou da Prestação de Serviços  -->
+      <div class="panel panel-primary-alt" os-form="$ctrl.commonStateService.formStatus" os-form-validation="" os-form-focus="">
+        <div class="panel-heading">
+          <div class="panel-title">Transmissão de Bens ou da Prestação de Serviços</div>
+        </div>
+        <div class="panel-body">
+          
+          <div class="row">
+            <div class="col-md-12 form-group form-group-sm"> <label>Descrição </label> <textarea name="servicoPrestado" type="text" maxlength="585" class="form-control ng-pristine ng-untouched ng-valid ng-empty ng-valid-maxlength" rows="3" ng-model="$ctrl.formParameters.servicoPrestado"></textarea>
+              <span class="help-block"></span>
+            </div>
+          </div>
+
+
+
+          <div class="row">
+            <div class="form-group form-group-sm form-horizontal">
+              <label class="col-sm-9 control-label">Valor Base</label>
+              <div class="col-sm-3">
+                <div class="input-group input-group-sm">
+                  <input name="valorBase" type="text" class="form-control text-right ng-pristine ng-untouched ng-valid ng-empty ng-valid-maxlength" ng-model="$ctrl.formParameters.valorBase" ng-change="$ctrl.onChangeValorBase()" maxlength="17"
+                    ui-number-mask="">
+                  <span class="input-group-addon"><span class="fa fa-eur"></span></span>
+                </div>
+              </div>
+              <span class="help-block"></span>
+            </div>
+          </div>
+
+          <div ng-show="!$ctrl.isRecibo()">
+            <div class="row" style="display:flex">
+              <div class="col-sm-6 col-xs-12">
+
+                <div class="form-group form-group-sm">
+                  <label title="" class="ng-binding"> Regime de IVA</label>
+                  <select name="regimeIva" class="form-control">
+                    <option value=""></option>
+                    <option label="Continente - 23% [taxa normal atual]" value="string:15">Continente - 23% [taxa normal atual]</option>
+                    <option label="Isento - art.º 13.º" value="string:09">Isento - art.º 13.º</option>
+                  </select>
+                  <div class="opcional-label ng-binding"></div> <span class="help-block"></span>
+                </div>
+
+              </div>
+
+              <div class="col-sm-6 col-xs-12" style="margin:auto">
+
+                <div class="form-group form-group-sm form-horizontal">
+                  <label class="col-sm-6 col-xs-12 control-label">Valor de IVA</label>
+                  <div class="col-sm-6" col-xs-12="">
+                    <p class="form-control-static pull-right ng-binding">0,00&nbsp;€</p>
+                  </div>
+                  <label class="help-block ng-binding" ng-bind="$ctrl.commonStateService.formStatus.errors['valorIVA']"></label>
+                </div>
+
+              </div>
+            </div>
+          </div>
+
+
+
+          <div class="row">
+            <div class="form-group form-group-sm form-horizontal">
+              <label class="col-sm-9 control-label">Total da Fatura</label>
+              <div class="col-sm-3">
+                <div class="form-control-static">
+                  <p class="pull-right ng-binding">0,00&nbsp;€</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script>
+  $(function() {
+    $("#datepicker").datepicker();
+  });
+</script>

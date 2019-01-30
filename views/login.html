@@ -1,0 +1,295 @@
+<div id="wrapper" style="position: absolute; top: 0; bottom: 0; ">
+    <header role="banner" class="main-header">
+        <div class="main-header-body">
+            <div class="container-wrapper">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-xs-3">
+                            <h1 class="at-logo"
+                                style="background: rgba(0,0,0,0) url(/autentica_static/img/logo-at.png) scroll no-repeat 0 0 transparent; background: url(/autentica_static/img/logo-at.png) scroll no-repeat 0 0 transparent;">
+                                <a href="https://www.portaldasfinancas.gov.pt"
+                                   title="Autoridade Tributária e Aduaneira">Autoridade Tributária e Aduaneira</a>
+                            </h1>
+                        </div>
+                        <div class="col-xs-4 col-xs-offset-1 main-header-title">
+                            <p class="sizeToggle">Autenticação</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <section class="content internalSPSection ">
+
+        <div class="grid">
+
+            <!-- MULTIPLE AUTHENTICATION -->
+
+            <div class="box authentication-panel  ">
+
+
+                <noscript>
+                    <div class="error-message warning error-mbtm">Ative o seu javascript para uma melhor utilização.
+                    </div>
+                </noscript>
+
+
+                <!-- TABS -->
+
+                <div class="tabs">
+
+                    <!-- TAB NIF LOGIN -->
+
+                    <input type="radio" name="tabs" id="tab1"
+                           checked
+                    >
+                    <label for="tab1" class="tab-label">
+                        <span>NIF</span>
+                    </label>
+
+                    <!-- END TAB NIF LOGIN -->
+
+                    <!-- TAB CC -->
+                    <input type="radio" name="tabs" id="tab2"
+                    >
+                    <label for="tab2" class="tab-label">
+                        <span><img src="/autentica_static/img/iconGovPt_20x20.png"
+                                   style="float: left;">&nbsp;Gov.Pt</span>
+                    </label>
+                    <!-- END TAB CC -->
+
+                    <!-- TAB EORI -->
+                    <input type="radio" name="tabs" id="tab3">
+                    <label for="tab3" class="tab-label">
+                        <span>EORI</span>
+                    </label>
+                    <!-- END TAB EORI -->
+
+                    <!-- CONTENT NIF -->
+                    <div id="tab-content1" class="tab-content">
+                        <div>
+
+
+                            <form name="loginForm" id="loginForm" ng-submit="signIn()" autocomplete="off" novalidate>
+                                <!-- TAB LOGIN -->
+
+                                <input type="hidden" name="path" value="&#x2f;geral&#x2f;dashboard">
+                                <input type="hidden" name="partID" value="PFAP">
+                                <input type="hidden" name="authVersion" value="2">
+
+                                <input type="hidden" name="_csrf" value="34b30d40-23e2-4739-82f4-d919d823284a"/>
+                                <input type="hidden" id="selectedAuthMethodNIF" name="selectedAuthMethod" value="N">
+
+
+                                <div id="input-username-nif-group">
+
+                                    <div class="custom-input ">
+                                        <label for="username" class="ie-label">Nº de Contribuinte</label>
+
+                                        <div class="input-container ">
+                                            <input type="text" name="username" ng-model="user.username" id="username"
+                                                   title="Insira um N&deg; de Contribuinte v&aacute;lido"
+                                                   class="customField"
+                                                   placeholder="Nº de Contribuinte" pattern="[0-9/]{9,14}"
+                                                   required
+                                                   autofocus="autofocus"
+                                            />
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                                <div id="input-password-nif-group">
+
+                                    <div class="password-input ">
+                                        <label for="password" class="ie-label">Senha de acesso</label>
+
+                                        <div class="pw-input-container">
+                                            <input type="password" class="password" name="password"
+                                                   ng-model="user.password" title="Campo Obrigat&oacute;rio"
+                                                   id="password" maxlength="16" required placeholder="Senha de acesso"
+                                                   autofocus="autofocus"
+                                            />
+
+                                            <div class="show-password">
+                                                Mostrar
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <button type="submit" name="sbmtLogin" id="sbmtLogin" tabindex="4"
+                                        class="sa-btn1" value="Entrar">
+                                    Autenticar
+                                </button>
+
+
+                                <div class="clearfix">
+                                    <div class="col-xs-6">
+                                        <div class="text-left">
+                                            <a href="/unauthed/recuperarSenhaForm?partID=PFAP&path=&#x2f;geral&#x2f;dashboard"
+                                               tabindex="5" class="panel-login-link">Recuperar senha</a>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-xs-6">
+                                        <div class="text-right">
+                                            <a href="/unauthed/novoUtilizadorForm?partID=PFAP&path=&#x2f;geral&#x2f;dashboard"
+                                               tabindex="5" class="panel-login-link">Novo Utilizador</a>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </form>
+
+                        </div>
+                    </div>
+                    <!-- END CONTENT NIF -->
+
+                    <!-- CONTENT CC -->
+                    <div id="tab-content2" class="tab-content">
+                        <div>
+
+
+                            <p>Faça a sua autenticação com <b>Cartão de Cidadão</b> ou <b>Chave Móvel Digital</b>.</p>
+
+                            <form name="loginCCForm" id="loginCCForm" class="ccMargin" method="GET"
+                                  ng-submit="singIn()">
+
+
+                                <input type="hidden" name="path" value="/geral/dashboard">
+                                <input type="hidden" name="partID" value="PFAP">
+
+                                <input type="hidden" name="authVersion" value="2">
+
+                                <input type="hidden" name="_csrf" value="34b30d40-23e2-4739-82f4-d919d823284a"/>
+                                <input type="hidden" id="selectedAuthMethodCC" name="selectedAuthMethod" value="C">
+
+                                <input type="submit" id="sbmtLoginCC" class="sa-btn-cc"
+                                       value="Cart&atilde;o de Cidad&atilde;o">
+
+                                <!-- ${submitCCForm.selectedAuthMethod.equals("C")} -->
+                                <!-- false -->
+                            </form>
+                        </div>
+                    </div>
+                    <!-- END CONTENT CC -->
+
+                    <!-- CONTENT EORI -->
+                    <div id="tab-content3" class="tab-content">
+                        <div>
+
+
+                            <form name="login-eori-form" id="login-eori-form" action="loginEORI"
+                                  method="POST" autocomplete="off">
+                                <!-- TAB LOGIN -->
+
+
+                                <input type="hidden" name="path" value="&#x2f;geral&#x2f;dashboard">
+                                <input type="hidden" name="partID" value="PFAP">
+
+                                <input type="hidden" name="authVersion" value="2">
+
+                                <input type="hidden" name="_csrf" value="34b30d40-23e2-4739-82f4-d919d823284a"/>
+                                <input type="hidden" id="selectedAuthMethodEori" name="selectedAuthMethod" value="E">
+
+                                <!-- TODO: REVER MENSAGENS DE INFO -->
+
+                                <div id="input-username-eori-group">
+                                    <div class="custom-input">
+                                        <label for="eoriUsername" class="ie-label">EORI Id</label>
+                                        <div class="input-container">
+                                            <input type="text" name="eoriUsername" id="eoriUsername"
+                                                   title="Insira um EORI v&aacute;lido" maxlength="19"
+                                                   class="customField " placeholder="EORI Id"
+                                                   pattern="[a-zA-Z]{2}[a-zA-Z0-9]{1,17}"
+                                                   required value=""
+                                                   autofocus="autofocus"
+                                            />
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div id="input-password-eori-group">
+                                    <div class="password-input">
+                                        <label for="password" class="ie-label">EORI Password</label>
+                                        <div class="pw-input-container">
+                                            <input type="password" class="password " name="password"
+                                                   title="Campo Obrigat&oacute;rio"
+                                                   id="pass" maxlength="16" required placeholder="EORI Password"/>
+                                            <div class="show-password">
+                                                Mostrar
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                                <button type="submit" name="sbmtEoriLogin" id="sbmtEoriLogin" tabindex="4"
+                                        class="sa-btn1" value="Entrar">
+                                    Autenticar
+                                </button>
+
+                                <!-- TODO: REVER MENSAGENS DE ERRO -->
+                            </form>
+                        </div>
+                    </div>
+                    <!-- END CONTENT EORI -->
+
+                </div>
+
+
+                <!-- END TABS -->
+
+            </div>
+        </div>
+    </section>
+
+    <div class="modal" id="confirmModal">
+        <div class="bg"></div>
+        <div class="modalcontent">
+            <img src="/autentica_static/logos/logotipo_AT.png" alt="o Portal das Finanças">
+
+            <p id="modalText">Autorizo que o meu <strong>Número de Contribuinte</strong> e <strong>Nome</strong> sejam
+                fornecidos &agrave; entidade <strong>o Portal das Finanças</strong>.</p>
+
+            <div class="clearfix">
+                <button class="sa-btn1" id="proceed">Autorizo</button>
+                <button class="sa-btn3" id="cancel">N&atilde;o Autorizo</button>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="container">
+        <div class="row">
+            <div class="norton-logo">
+                <script src=https://seal.verisign.com/getseal?host_name=www.acesso.gov.pt&size=S&use_flash=NO&use_transparent=NO&lang=pt></script>
+            </div>
+        </div>
+    </div>
+
+
+    <!--[if lte IE 9]>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <![endif]-->
+
+    <div class="footer" role="footer">
+        <!-- role utilizado de um ponto de vista da acessibilidade face à impossibilidade de se usar a etiqueta <footer> -->
+        <div class="grid clearfix">
+            <ul class="fleft clearfix">
+                <li>
+                    <a href="/alterarSenhaForm?partID=PFAP&path=&#x2f;geral&#x2f;dashboard&authMethods=NIF,EORI,CARTAO_DE_CIDADAO"
+                       title="Alterar Senha">Alterar Senha</a></li>
+            </ul>
+            <p class="fright">Atualizado em 2018-11-12. Versão 3.7.9-1018</p>
+            <!-- implementation hash: 263b448be85d91dff6b36a967be32904bd5c9873 -->
+        </div>
+    </div>
+</div>
