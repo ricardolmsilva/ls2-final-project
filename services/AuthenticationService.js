@@ -10,12 +10,18 @@ app.factory('AuthenticationService', function($q) {
 
             var users = [{
                 'username': '111111111',
-                'password': '111111111'
+                'password': '111111111',
+                'nif':'111111111',
+                "nome":'Ricardo',
+                "morada":"Rua sem fim",
+                "atividade":"Outros prestadores de serviços"
 
               },
               {
                 'username': '111111112',
-                'password': '111111112'
+                'password': '111111112',
+                'nif':'111111112',
+                "nome":'111111112'
               }
             ]
 

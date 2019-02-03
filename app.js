@@ -1,5 +1,6 @@
 var app = angular.module("portalFinancas", ["ngRoute"]);
 
+
 app.run(function($rootScope, $route, AuthenticationService, $location) {
 
   AuthenticationService.init();
@@ -18,6 +19,7 @@ app.run(function($rootScope, $route, AuthenticationService, $location) {
   });
 });
 
+
 app.config(['$routeProvider', function AppConfig($routeProvider) {
 
   $routeProvider.when("/login", {
@@ -34,7 +36,7 @@ app.config(['$routeProvider', function AppConfig($routeProvider) {
 
     .when("/recibos/emitirfatura", {
       templateUrl: "views/emitirfatura.html",
-      controller: "homeCtrl",
+      controller: "emitirFaturaCtrl",
       title: "Finanças - Emitir Fatura",
     })
 
@@ -49,7 +51,6 @@ app.config(['$routeProvider', function AppConfig($routeProvider) {
       controller: "homeCtrl",
       title: "Finanças - Portal"
     });
-
 
 }]);
 

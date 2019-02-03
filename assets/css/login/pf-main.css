@@ -6473,7 +6473,7 @@ button {
     box-shadow: 0px 3px 5px 0px rgba(50, 50, 50, 0.35);
 }
 .watermark-bg {
-    background: url(../images/background.png) scroll no-repeat 0 0 transparent;
+    background: url('/assets/images/background.png') scroll no-repeat 0 0 transparent;
     background-position-y: 159px;
 }
 .fixed-header {
@@ -9579,7 +9579,7 @@ table .collapse.in {
 
 
 #bgImg {
-    background: url('../../img/background.png') scroll no-repeat 0 100px transparent;
+    background: url('/assets/images/background.png') scroll no-repeat 0 100px transparent;
 }
 
 @media (max-width: 480px) {
