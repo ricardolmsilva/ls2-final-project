@@ -7,7 +7,7 @@
           <h1>Emitir Faturas</h1>
         </div>
         <div class="col-xs-4"></div>
-        <div class="col-xs-5 text-right btn-group-inline"> <a href="/" class="btn btn-default btn-sm dropdown-toggle">Cancelar</a> <button type="button" class="btn btn-primary btn-sm" ng-click="">Emitir</button>
+        <div class="col-xs-5 text-right btn-group-inline"> <a href="/" class="btn btn-default btn-sm dropdown-toggle">Cancelar</a> <button type="button" class="btn btn-primary btn-sm" ng-click="" ng-disabled="emitirFatura.$invalid">Emitir</button>
         </div>
         <div class="text-right btn-group-responsive">
           <div class="btn-group">
@@ -33,17 +33,19 @@
   <div class="row margin-top-lg">
     <div class="col-md-12 margin-top-sm">
 
+<form name="emitirFatura" novalidate>
+
       <!--  Emissão   -->
       <div>
         <div class="panel panel-primary-alt">
           <div class="panel-heading">
-            <div class="panel-title ng-binding">Emissão</div>
+            <div class="panel-title ">Emissão</div>
           </div>
           <div class="panel-footer font-size-sm color-at-gray-dark" style="border-bottom:1px solid #ddd">
             <p>Se não tiver atividade aberta na data de prestação de serviço especificada, a Fatura ou Fatura-Recibo a emitir será do tipo Ato Isolado.</p>
           </div>
           <div class="panel-body">
-            <div class="alert alert-warning" role="alert" ng-show="!$ctrl.commonStateService.init">Se alterar a Data de prestação ou o Tipo, irá perder a informação inserida do formulário.
+            <div class="alert alert-warning" role="alert" ng-show="emitirFatura.dataPrestacao.$touched && emitirFatura.dataPrestacao.$valid"">Se alterar a Data de prestação ou o Tipo, irá perder a informação inserida do formulário.
               <button type="button" class="close" data-dismiss="alert" data-toggle="tooltip" title="" data-original-title="Fechar Alerta">
                 <span aria-hidden="true">×</span>
               </button> </div>
@@ -54,10 +56,19 @@
 
                   <label for="datepicker" class="ng-binding">Data de prestação de serviço</label>
                   <div class="input-group input-group-sm date">
-                    <input class="form-control date-input text-right" type="text" name="dataPrestacao" id="datepicker">
+
+                    <input type="text"
+                    class="form-control date-input text-right"
+                    name="dataPrestacao"
+                    id="datepicker"
+                    ng-model="fatura.dataPrestacao"
+                    required>
+
                     <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
                   </div>
-
+                  <div class="text-danger"
+                        ng-show="emitirFatura.dataPrestacao.$touched && emitirFatura.dataPrestacao.$invalid">Campo
+                                      obrigatório.</div>
 
                 </div>
 
@@ -67,8 +78,10 @@
 
                   <label title=""> Tipo</label>
                   <select name="tipoRecibo" class="form-control">
-                    <option label="Fatura-Recibo" value="string:R">Fatura-Recibo</option>
-                    <option label="Fatura" value="string:FTR">Fatura</option>
+
+                    <option label="Fatura-Recibo" value="fatura-recibo">Fatura-Recibo</option>
+                    <option label="Fatura" value="fatura">Fatura</option>
+
                   </select>
 
                 </div>
@@ -80,7 +93,7 @@
 
 
       <!--  Transmitente de Bens ou do Prestador de Serviços  -->
-      <div class="panel panel-primary-alt" os-form="$ctrl.commonStateService.formStatus" os-form-validation="" os-form-focus="">
+      <div ng-show="emitirFatura.dataPrestacao.$touched && emitirFatura.dataPrestacao.$valid" class="panel panel-primary-alt" os-form="$ctrl.commonStateService.formStatus" os-form-validation="" os-form-focus="">
         <div class="panel-heading">
           <div class="panel-title">Transmitente de Bens ou do Prestador de Serviços</div>
         </div>
@@ -88,12 +101,12 @@
           <div class="row">
 
             <div class="col-sm-4 form-group form-group-sm">
-              <label class="ontrol-label">NIF</label>
+              <label class="control-label">NIF</label>
               <p class="form-control-static ng-binding">224221159</p>
             </div>
 
             <div class="col-sm-8">
-              <label class="ontrol-label">Nome</label>
+              <label class="control-label">Nome</label>
               <p class="form-control-static ng-binding">RICARDO LUIS MELO DA SILVA</p>
             </div>
 
@@ -131,7 +144,7 @@
 
 
       <!--  Adquirente de Bens ou de Serviços  -->
-      <div class="panel panel-primary-alt" os-form="$ctrl.commonStateService.formStatus" os-form-validation="" os-form-focus="" pfview-init="">
+      <div ng-show="emitirFatura.dataPrestacao.$touched && emitirFatura.dataPrestacao.$valid" class="panel panel-primary-alt" os-form="$ctrl.commonStateService.formStatus" os-form-validation="" os-form-focus="" pfview-init="">
         <div class="panel-heading">
           <div class="panel-title">Adquirente de Bens ou de Serviços</div>
         </div>
@@ -143,7 +156,7 @@
                   <label title="" class="ng-binding"> País
                   </label>
                   <select name="pais" class="form-control">
-                    <option label="PORTUGAL  " value="string:620" selected="selected">PORTUGAL </option>
+                    <option label="PORTUGAL  " value="portugal" selected>PORTUGAL </option>
                   </select>
                   <div class="opcional-label ng-binding"></div> <span class="help-block"></span>
                 </div>
@@ -190,14 +203,14 @@
 
 
       <!--  Transmissão de Bens ou da Prestação de Serviços  -->
-      <div class="panel panel-primary-alt" os-form="$ctrl.commonStateService.formStatus" os-form-validation="" os-form-focus="">
+      <div ng-show="emitirFatura.dataPrestacao.$touched && emitirFatura.dataPrestacao.$valid" class="panel panel-primary-alt" os-form="$ctrl.commonStateService.formStatus" os-form-validation="" os-form-focus="">
         <div class="panel-heading">
           <div class="panel-title">Transmissão de Bens ou da Prestação de Serviços</div>
         </div>
         <div class="panel-body">
-          
+
           <div class="row">
-            <div class="col-md-12 form-group form-group-sm"> <label>Descrição </label> <textarea name="servicoPrestado" type="text" maxlength="585" class="form-control ng-pristine ng-untouched ng-valid ng-empty ng-valid-maxlength" rows="3" ng-model="$ctrl.formParameters.servicoPrestado"></textarea>
+            <div class="col-md-12 form-group form-group-sm"> <label>Descrição </label> <textarea name="servicoPrestado" type="text" maxlength="585" class="form-control" rows="3"></textarea>
               <span class="help-block"></span>
             </div>
           </div>
@@ -209,7 +222,7 @@
               <label class="col-sm-9 control-label">Valor Base</label>
               <div class="col-sm-3">
                 <div class="input-group input-group-sm">
-                  <input name="valorBase" type="text" class="form-control text-right ng-pristine ng-untouched ng-valid ng-empty ng-valid-maxlength" ng-model="$ctrl.formParameters.valorBase" ng-change="$ctrl.onChangeValorBase()" maxlength="17"
+                  <input name="valorBase" type="text" class="form-control text-right" ng-model="" ng-change="$ctrl.onChangeValorBase()" maxlength="17"
                     ui-number-mask="">
                   <span class="input-group-addon"><span class="fa fa-eur"></span></span>
                 </div>
@@ -218,16 +231,15 @@
             </div>
           </div>
 
-          <div ng-show="!$ctrl.isRecibo()">
+          <div ng-show="">
             <div class="row" style="display:flex">
               <div class="col-sm-6 col-xs-12">
 
                 <div class="form-group form-group-sm">
                   <label title="" class="ng-binding"> Regime de IVA</label>
                   <select name="regimeIva" class="form-control">
-                    <option value=""></option>
-                    <option label="Continente - 23% [taxa normal atual]" value="string:15">Continente - 23% [taxa normal atual]</option>
-                    <option label="Isento - art.º 13.º" value="string:09">Isento - art.º 13.º</option>
+                    <option label="Continente - 23% [taxa normal atual]" value="iva23" selected>Continente - 23% [taxa normal atual]</option>
+                    <option label="Isento - art.º 13.º" value="isento13">Isento - art.º 13.º</option>
                   </select>
                   <div class="opcional-label ng-binding"></div> <span class="help-block"></span>
                 </div>
@@ -262,6 +274,7 @@
           </div>
         </div>
       </div>
+      </form>
     </div>
   </div>
 </div>

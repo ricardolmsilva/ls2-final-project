@@ -1,39 +1,56 @@
 var app = angular.module("portalFinancas", ["ngRoute"]);
 
-//, "ui.bootstrap"
+app.run(function($rootScope, $route, AuthenticationService, $location) {
 
-app.run(function($rootScope, $route, AuthenticationService) {
+  AuthenticationService.init();
 
-    $rootScope.$on('$routeChangeSuccess', function() {
-        $rootScope.href = $route.current.href;
-        document.title = $route.current.title;
-    });
+  $rootScope.$on('$routeChangeSuccess', function() {
 
-    AuthenticationService.init();
+    if ($rootScope.authenticatedUser == null) {
+      event.preventDefault();
+      $location.path('/login');
+    }
 
+    $rootScope.currentPath = $location.path();
+    $rootScope.href = $route.current.href;
+    document.title = $route.current.title;
+
+  });
 });
 
 app.config(['$routeProvider', function AppConfig($routeProvider) {
 
-    $routeProvider.when("/",{
-        templateUrl:"views/portal.html",
-        controller:"homeCtrl",
-        title:"Faturas e Recibos Verdes"
+  $routeProvider.when("/login", {
+      templateUrl: "views/login.html",
+      controller: "loginCtrl",
+      title: "Login"
     })
-    .when("/recibos/emitirfatura",{
-        templateUrl:"views/emitirfatura.html",
-        controller:"homeCtrl",
-        title:"Faturas e Recibos Verdes",
+
+    .when("/portal", {
+      templateUrl: "views/portal.html",
+      controller: "homeCtrl",
+      title: "Finanças - Portal"
     })
-    .when("/recibos/consultarfatura",{
-        templateUrl:"views/consultar.html",
-        controller:"homeCtrl",
-        title:"Faturas e Recibos Verdes"
+
+    .when("/recibos/emitirfatura", {
+      templateUrl: "views/emitirfatura.html",
+      controller: "homeCtrl",
+      title: "Finanças - Emitir Fatura",
     })
+
+    .when("/recibos/consultarfatura", {
+      templateUrl: "views/consultar.html",
+      controller: "homeCtrl",
+      title: "Finanças - Consultar Fatura"
+    })
+
     .otherwise({
-        templateUrl:"views/login.html",
-        controller:"loginCtrl"
+      templateUrl: "views/portal.html",
+      controller: "homeCtrl",
+      title: "Finanças - Portal"
     });
+
+
 }]);
 
 /*app.config(['$translateProvider', function($translateProvider){
