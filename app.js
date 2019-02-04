@@ -42,8 +42,14 @@ app.config(['$routeProvider', function AppConfig($routeProvider) {
 
     .when("/recibos/consultarfatura", {
       templateUrl: "views/consultar.html",
-      controller: "homeCtrl",
+      controller: "consultarFaturaCtrl",
       title: "Finanças - Consultar Fatura"
+    })
+
+    .when("/recibos/detalhesfatura/:nFatura", {
+      templateUrl: "views/detalhefatura.html",
+      controller: "consultarFaturaCtrl",
+      title: "Finanças - Detalhes Fatura"
     })
 
     .otherwise({

@@ -2,8 +2,20 @@ app.controller('emitirFaturaCtrl', function($rootScope, $scope, $location) {
 
   $scope.emitirssFatura = function() {
 
+    var faturas = [];
+    var faturas = localStorage.getItem('faturas');
+
+    if (!faturas) {
+
+      $scope.nFatura = 1;
+
+    }else{
+        faturas = JSON.parse(localStorage.getItem('faturas'));
+        $scope.nFatura = faturas.length+1;
+    }
 
     var fatura = {
+      "nFatura":$scope.nFatura,
       "dataPrestacao": $scope.fatura.dataPrestacao,
       "tipo": $scope.fatura.tipo,
       "nifPrestador": $rootScope.authenticatedUser.nif,
@@ -17,7 +29,7 @@ app.controller('emitirFaturaCtrl', function($rootScope, $scope, $location) {
       "descricao": $scope.fatura.descricao,
       "regimeIva": $scope.fatura.regimeIva,
       "valorBase": $scope.fatura.valorBase,
-      "totalFatura": $scope.fatura.totalFatura
+      "totalFatura": ($scope.fatura.regimeIva*$scope.fatura.valorBase)+$scope.fatura.valorBase
     }
 
     var faturas = localStorage.getItem('faturas');
@@ -37,7 +49,7 @@ app.controller('emitirFaturaCtrl', function($rootScope, $scope, $location) {
       localStorage.setItem('faturas', JSON.stringify(faturas));
 
     }
-    $location.path('/portal');
+    $location.path('/recibos/consultarfatura');
   }
 
 

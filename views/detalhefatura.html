@@ -1,0 +1,208 @@
+<div class="code-fixed-header margin-top-sm margin-bottom-sm">
+  <div class="fixed-header-wrap">
+    <div class="fixed-header affix-top">
+      <div class="vcenter">
+        <div class="col-xs-7">
+          <h1>Fatura-Recibo nº {{fatura.nFatura}}<span class='label label-success-border'> Emitido</span></h1>
+        </div>
+
+        <div class="col-xs-5 text-right btn-group-inline">
+          <button type="button" class="btn btn-default-hover-danger btn-sm" data-toggle="modal" data-target="#myModal"><a href="/#!/recibos/consultarfatura">Anular</a> </button>
+
+
+          <div class="btn-group text-right">
+            <button id="ImprimirButton" class="btn btn-default btn-sm">Imprimir Económico</button>
+            <button type="button" class="btn btn-default btn-sm dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+              <span class="caret"></span>
+              <span class="sr-only">Toggle Dropdown</span>
+            </button>
+            <ul class="dropdown-menu" role="menu">
+              <li><a href="/recibos/portal/imprimir/224221159/0/5/economico">Imprimir Económico</a></li>
+              <li><a href="/recibos/portal/imprimir/224221159/0/5/normal">Imprimir</a></li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="col-xs-5 text-right btn-group-responsive">
+          <div class="btn-group">
+            <a class="button btn btn-default btn-sm" href="/recibos/portal/imprimir/224221159/0/5/economico">Imprimir Económico</a>
+            <button type="button" class="btn btn-default btn-sm dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+              <span class="caret"></span>
+              <span class="sr-only">Toggle Dropdown</span>
+            </button>
+            <ul class="dropdown-menu" role="menu">
+              <li><a href="/recibos/portal/imprimir/224221159/0/5/economico">Imprimir Económico</a></li>
+              <li><a href="/recibos/portal/imprimir/224221159/0/5/normal">Imprimir</a></li>
+            </ul>
+            <button type="button" class="btn btn-default-hover-danger btn-sm" data-toggle="modal" data-target="#myModal">Anular </button>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xs-12">
+          <legend><small>Emitida a {{fatura.dataPrestacao | date : 'yyyy-MM-dd' }}</small></legend>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="panel panel-lite margin-top-lg">
+  <div class="panel-heading">
+    <div class="panel-title">Transmitente de Bens ou do Prestador de Serviços</div>
+  </div>
+  <div class="panel-body">
+    <div class="row">
+      <div class="col-xs-4 col-md-4">
+        <dl class="margin-bottom">
+          <dt>NIF</dt>
+          <dd>{{fatura.nifPrestador}}</dd>
+        </dl>
+      </div>
+      <div class="col-xs-8 col-md-8">
+        <dl>
+          <dt>Nome</dt>
+          <dd>{{fatura.nomePrestador | uppercase}}</dd>
+        </dl>
+      </div>
+      <div class="col-xs-12 col-md-12">
+        <dl class="margin-bottom">
+          <dt>Domícilio fiscal / Estabelecimento estável</dt>
+          <dd>{{fatura.moradaPrestador | uppercase}}</dd>
+        </dl>
+      </div>
+
+      <div class="col-xs-12">
+        <dl>
+          <dt>Atividade exercida</dt>
+          <dd>{{fatura.atividadePrestador}}</dd>
+        </dl>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="panel panel-lite">
+  <div class="panel-heading">
+    <div class="panel-title">Adquirente de Bens ou de Serviços</div>
+  </div>
+  <div class="panel-body">
+    <div class="row">
+      <div class="col-md-4 col-xs-4">
+        <dl class="margin-bottom">
+          <dt>NIF</dt>
+          <dd>{{fatura.nifAdquirente}}</dd>
+        </dl>
+      </div>
+      <div class="cold-md-8 col-xs-8">
+        <dl>
+          <dt>Nome</dt>
+          <dd>{{fatura.nomeAdquirente | uppercase}}</dd>
+        </dl>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-4 col-xs-10">
+        <dl class="margin-bottom">
+          <dt>País</dt>
+          <dd>{{fatura.paisAdquirente | uppercase}}</dd>
+        </dl>
+      </div>
+
+      <div class="col-md-8 col-xs-10">
+        <dl class="margin-bottom">
+          <dt>Morada</dt>
+          <dd>{{fatura.moradaAdquirente | uppercase}}</dd>
+        </dl>
+      </div>
+    </div>
+    <div class="row">
+    </div>
+  </div>
+</div>
+<div class="panel panel-lite">
+  <div class="panel-heading">
+    <div class="panel-title">Transmissão de Bens ou da Prestação de Serviços</div>
+  </div>
+  <div class="panel-body">
+    <div class="row">
+    <!--  <div class="col-md-12 col-xs-12">
+        <dl class="margin-bottom">
+          <dt>Importância recebida a título de:</dt>
+          <dt>
+            <div class="col-xs-12">
+              <div class="radio">
+                <label>
+                  <input type="radio" name="optionsRadios" id="optionsRadios1" checked disabled="true">
+                  Pagamento dos bens ou dos serviços
+                </label>
+              </div>
+              <div class="radio">
+                <label>
+                  <input type="radio" name="optionsRadios" id="optionsRadios2" disabled="true">
+                  Adiantamento
+                </label>
+              </div>
+              <div class="radio">
+                <label>
+                  <input type="radio" name="optionsRadios" id="optionsRadios2" disabled="true">
+                  Adiantamento para pagamento de despesas por conta e em nome do cliente
+                </label>
+              </div>
+            </div>
+          </dt>
+        </dl>
+      </div>-->
+      <div class="col-md-12 col-xs-12">
+        <dl class="margin-bottom">
+          <dt>Data da transmissão de bens ou da prestação de serviços</dt>
+          <dd>{{fatura.dataPrestacao | date : 'yyyy-MM-dd' }}</dd>
+        </dl>
+      </div>
+      <div class="col-md-12 col-xs-12">
+        <dl class="margin-bottom">
+          <dt>Descrição</dt>
+          <dd>{{fatura.descricao}}</dd>
+        </dl>
+      </div>
+      <div class="col-md-12 col-xs-12">
+        <dl class="col-xs-12 dl-horizontal-values">
+          <div class="col-md-10 col-xs-9">
+            <dt>Valor Base</dt>
+          </div>
+          <div class="col-md-2 col-xs-3">
+            <dd>{{fatura.valorBase}}€</dd>
+
+          </div>
+
+          <div class="col-md-10 col-xs-9">
+            <dt>Valor de IVA</dt>
+          </div>
+          <div class="col-md-2 col-xs-3">
+            <dd>{{(fatura.regimeIva|number:2)* (fatura.valorBase|number:2)}}€</dd>
+          </div>
+
+          <!--<div class="col-md-10 col-xs-9">
+            <dt>Imposto de Selo</dt>
+          </div>
+          <div class="col-md-2 col-xs-3">
+            <dd>0,00 €</dd>
+          </div>
+
+          <div class="col-md-10 col-xs-9">
+            <dt>Valor de IRS Sem retenção - Art.101º, n.º1 do CIRS</dt>
+          </div>
+          <div class="col-md-2 col-xs-3">
+            <dd>0,00 €</dd>
+          </div>-->
+
+          <div class="col-md-10 col-xs-9">
+            <dt>Importância recebida</dt> </div>
+          <div class="col-md-2 col-xs-3">
+            <dd>{{fatura.totalFatura}}€</dd>
+          </div>
+        </dl>
+      </div>
+    </div>
+  </div>
+</div>

@@ -21,7 +21,9 @@ app.factory('AuthenticationService', function($q) {
                 'username': '111111112',
                 'password': '111111112',
                 'nif':'111111112',
-                "nome":'111111112'
+                "nome":'Miguel',
+                "morada":"Rua",
+                "atividade":"Outros prestadores de serviços"
               }
             ]
 

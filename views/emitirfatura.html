@@ -220,6 +220,7 @@
                   type="number"
                   class="form-control text-right"
                   maxlength="17"
+                  value="0"
                   ng-model="fatura.valorBase"
                 ">
 
@@ -250,7 +251,7 @@
                 <div class="form-group form-group-sm form-horizontal">
                   <label class="col-sm-6 col-xs-12 control-label">Valor de IVA</label>
                   <div class="col-sm-6" col-xs-12="">
-                    <p class="form-control-static pull-right" ng-model="fatura.valorIVA">{{(fatura.valorBase|number:2) * (fatura.regimeIva|number:2)}}€</p>
+                    <p class="form-control-static pull-right" ng-model="fatura.valorIVA">{{(fatura.valorBase|number:2) * (fatura.regimeIva|number:2) | number:2}}€</p>
                   </div>
 
                 </div>
@@ -266,7 +267,9 @@
               <label class="col-sm-9 control-label">Total da Fatura</label>
               <div class="col-sm-3">
                 <div class="form-control-static">
-                  <p class="pull-right" ng-model="fatura.totalFatura">{{((fatura.valorBase|number:2) * (fatura.regimeIva|number:2))+fatura.valorBase|number:2}}€</p>
+                  
+                  <p class="pull-right">{{((fatura.valorBase|number:2) * (fatura.regimeIva|number:2))+fatura.valorBase|number:2}}€</p>
+                  <!--{{((fatura.valorBase|number:2) * (fatura.regimeIva|number:2))+fatura.valorBase|number:2}}-->
                 </div>
               </div>
             </div>
